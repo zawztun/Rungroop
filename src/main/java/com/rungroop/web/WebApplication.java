@@ -1,5 +1,4 @@
-package com.rungoop.web;
-
+package com.rungroop.web;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

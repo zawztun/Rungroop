@@ -1,4 +1,4 @@
-package com.rungoop.web.models;
+package com.rungroop.web.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

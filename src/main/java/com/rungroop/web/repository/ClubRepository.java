@@ -1,6 +1,6 @@
-package com.rungoop.web.repository;
+package com.rungroop.web.repository;
 
-import com.rungoop.web.models.Club;
+import com.rungroop.web.models.Club;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

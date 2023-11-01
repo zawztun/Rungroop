@@ -11,12 +11,15 @@
                 <div class="col-md-6">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name = "title" th:field= "*{title}" placeholder="Title">
+                    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
                     <label for="photoUrl" class="form-label mt-4">PhotoUrl</label>
                     <input type = "text" class="form-control" id="photoUrl" name = "photoUrl" th:field= "*{photoUrl}" placeholder="PhotoUrl">
+                    <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
                 </div>
                 <div class="col-12">
                     <label for="content" class="form-label">Content</label>
                     <input type="text" class="form-control" id="content" name="content" th:field= "*{content}"placeholder="Content">
+                    <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
                 </div>
                 <div class="col-1">
                 <button class="btn btn-primary" type="submit">

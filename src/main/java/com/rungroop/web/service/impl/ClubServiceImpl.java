@@ -1,9 +1,9 @@
-package com.rungoop.web.service.impl;
+package com.rungroop.web.service.impl;
 
-import com.rungoop.web.dto.ClubDto;
-import com.rungoop.web.models.Club;
-import com.rungoop.web.repository.ClubRepository;
-import com.rungoop.web.service.ClubService;
+import com.rungroop.web.dto.ClubDto;
+import com.rungroop.web.models.Club;
+import com.rungroop.web.repository.ClubRepository;
+import com.rungroop.web.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +26,9 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Club saveClub(Club club) {
-        return clubRepository.save(club);
+    public Club saveClub(ClubDto clubDto) {
+    Club club = mapToClub(clubDto);
+    return clubRepository.save(club);
     }
 
     @Override
@@ -41,6 +42,11 @@ public class ClubServiceImpl implements ClubService {
     public void updateClub(ClubDto clubDto) {
         Club club = mapToClub(clubDto);
         clubRepository.save(club);
+    }
+
+    @Override
+    public void delete(Long clubId) {
+        clubRepository.deleteById(clubId);
     }
 
     private Club mapToClub(ClubDto club){
