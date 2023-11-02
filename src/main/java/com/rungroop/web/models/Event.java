@@ -26,7 +26,7 @@ public class Event {
     private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String Type;
+    private String type;
     private String photoUrl;
     @CreationTimestamp
     private LocalDateTime createdOn;
