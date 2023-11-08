@@ -35,6 +35,7 @@
     </style>
 
     <div class="container container-sm py-4">
+        <div th:if="${param.fail}" class="alert alert-warning">username and password already exits!</div>
             <form class="row g-3" method="post" role="form" th:action="@{/register/save}" th:object="${user}">
                 <div class="form-group">
                     <label>Username</label>
@@ -63,7 +64,7 @@
                             th:field="*{password}">
                 </div>
                 <p th:if="${#fields.hasErrors('password')}" class="text-danger"></p>
-
+                <button th:href="@{/login}" type="submit" class="btn btn-secondary">Login</button>
                 <button th:href="@{/register}" type="submit" class="btn btn-secondary">Register</button>
             </form>
         </div>
