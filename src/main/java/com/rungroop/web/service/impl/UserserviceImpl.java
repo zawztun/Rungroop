@@ -7,10 +7,11 @@ import com.rungroop.web.repository.RoleRepository;
 import com.rungroop.web.repository.UserRepository;
 import com.rungroop.web.service.Userservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-
+@Service
 public class UserserviceImpl implements Userservice {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -30,6 +31,17 @@ public class UserserviceImpl implements Userservice {
         Role role = roleRepository.findByName("USER");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
-
     }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public UserEntity findByUserName(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+
 }
