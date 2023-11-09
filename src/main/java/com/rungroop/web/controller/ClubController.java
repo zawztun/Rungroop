@@ -2,6 +2,7 @@ package com.rungroop.web.controller;
 
 import com.rungroop.web.dto.ClubDto;
 import com.rungroop.web.models.Club;
+import com.rungroop.web.security.SecurityUtil;
 import com.rungroop.web.service.ClubService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,11 @@ public class ClubController {
         this.clubService = clubService;
     }
 
-    @GetMapping("/clubs")
+    @GetMapping("/")
     public String listClub(Model model) {
         List<ClubDto> clubs = clubService.findAllClub();
+        String username = SecurityUtil.getSessionUser();
+        model.addAttribute("user",username);
         model.addAttribute("clubs", clubs);
         return "clubs-list";
     }
@@ -67,7 +70,9 @@ public class ClubController {
 
     @GetMapping("/clubs/{clubId}/edit")
     public String editClubForm(@PathVariable("clubId") long clubId, Model model) {
+
         ClubDto club = clubService.findClubById(clubId);
+        //
         model.addAttribute("club", club);
         return "clubs-edit";
     }

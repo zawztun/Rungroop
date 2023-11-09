@@ -20,31 +20,34 @@ public class AuthController {
     public String loginPage(){
         return "login";
     }
-
     @GetMapping("/register")
     public String getRegisterForm(Model model) {
-        RegistrationDto user = new RegistrationDto();
-        model.addAttribute("user", user);
+        RegistrationDto newuser = new RegistrationDto();
+        model.addAttribute("newuser", newuser);
         return "register";
     }
 
     @PostMapping("/register/save")
-    public String register(@Valid @ModelAttribute("user") RegistrationDto user,
+    public String register(@Valid @ModelAttribute("user")RegistrationDto user,
                            BindingResult result, Model model) {
+        System.out.println("==============================");
+        System.out.println(user);
         UserEntity existingUserEmail = userservice.findByEmail(user.getEmail());
-        if(existingUserEmail != null && existingUserEmail.getEmail() != null && !existingUserEmail.getEmail().isEmpty()){
+        System.out.println(existingUserEmail);
+        System.out.println("Existing user");
+        if(existingUserEmail != null && existingUserEmail.getEmail() != null && !existingUserEmail.getEmail().isEmpty()) {
             return "redirect:/register?fail";
         }
-        UserEntity existingUserUserName = userservice.findByUserName(user.getUsername());
-        if(existingUserUserName != null && existingUserUserName.getUsername() != null && !existingUserUserName.getUsername().isEmpty()){
+        UserEntity existingUserUsername = userservice.findByUserName(user.getUsername());
+        if(existingUserUsername != null && existingUserUsername.getUsername() != null && !existingUserUsername.getUsername().isEmpty()) {
             return "redirect:/register?fail";
         }
-
-        if(result.hasErrors()){
+        if(result.hasErrors()) {
             model.addAttribute("user", user);
             return "register";
         }
+        System.out.println(user);
         userservice.saveUser(user);
-        return "redirect:/clubs?success";
+        return "redirect:/?success";
     }
 }
